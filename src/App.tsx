@@ -1,26 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useSignInWithGoogle} from 'react-firebase-hooks/auth';
+import {auth} from "./firebase";
+import AddLink from "./components/AddLink";
+import Links from "./components/Links";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+    if (error) {
+        return (
+            <div>
+                <p>Error: {error.message}</p>
+            </div>
+        );
+    }
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (user) {
+        return (
+            <div className={"bg-blue-500 h-screen w-screen"}>
+                <h1 className={"text-center text-2xl text-white"}>Zoom Links</h1>
+                <h2 className={"text-center text-xl text-white "}>Welcome, {user.user.displayName}</h2>
+                {user &&
+                    <>
+                        <AddLink/>
+                        <Links/>
+                    </>
+                }
+
+            </div>
+        );
+    }
+
+    return (
+        <div className={"bg-blue-500 h-screen w-screen"}>
+            <h1 className={"text-center text-2xl text-white"}>Zoom Links</h1>
+            <div className={"text-center p-4"}>
+                <button className={"outline-0 px-4 py-2 bg-red-500 text-white rounded-2xl hover:bg-red-400"} onClick={() => signInWithGoogle()}>Sign In With Google
+                </button>
+            </div>
+        </div>
+    )
 }
 
 export default App;
