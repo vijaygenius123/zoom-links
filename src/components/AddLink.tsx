@@ -1,13 +1,26 @@
-import {useCollection} from 'react-firebase-hooks/firestore';
+import {addDoc} from 'firebase/firestore'
 import {linksCollection} from '../firebase'
-import {DOMElement, FormEvent, useRef} from "react";
+import {FC, FormEvent, useState} from "react";
+
+interface AddLinkProps {
+    uid: string
+}
 
 
-const AddLink = () => {
+const AddLink: FC<AddLinkProps> = ({uid}) => {
+    const [name, setName] = useState('')
+    const [meetingId, setMeetingID] = useState('')
+
 
     const handleSubmit = (evt: FormEvent) => {
         evt.preventDefault()
-        console.log('Handle Submit')
+        if (meetingId && name) {
+            addDoc(linksCollection, {
+                uid,
+                meetingId,
+                name
+            }).then()
+        }
     }
     return (
         <div className="w-full max-w-md mx-auto my-2">
@@ -18,15 +31,17 @@ const AddLink = () => {
                     </label>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="name" type="text" placeholder="Name"/>
+                        id="name" type="text" placeholder="Name" required value={name}
+                        onChange={e => setName(e.target.value)}/>
                 </div>
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id">
                         Meeting ID
                     </label>
                     <input
-                        className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="id" type="text" placeholder="123 123 1234"/>
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="id" type="text" placeholder="123 123 1234" required value={meetingId}
+                        onChange={e => setMeetingID(e.target.value)}/>
                 </div>
                 <div className="flex items-center justify-between">
                     <button

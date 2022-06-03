@@ -27,7 +27,7 @@ function App() {
                 <h2 className={"text-center text-xl text-white "}>Welcome, {user.user.displayName}</h2>
                 {user &&
                     <>
-                        <AddLink/>
+                        <AddLink uid={user.user.uid}/>
                         <Links/>
                     </>
                 }
