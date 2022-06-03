@@ -17,7 +17,7 @@ const AddLink: FC<AddLinkProps> = ({uid}) => {
         if (meetingId && name) {
             addDoc(linksCollection, {
                 uid,
-                meetingId,
+                meetingId: meetingId.replace(' ', ''),
                 name
             }).then()
         }

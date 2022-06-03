@@ -28,7 +28,7 @@ function App() {
                 {user &&
                     <>
                         <AddLink uid={user.user.uid}/>
-                        <Links/>
+                        <Links userId={user.user.uid}/>
                     </>
                 }
 
@@ -40,7 +40,8 @@ function App() {
         <div className={"bg-blue-500 h-screen w-screen"}>
             <h1 className={"text-center text-2xl text-white"}>Zoom Links</h1>
             <div className={"text-center p-4"}>
-                <button className={"outline-0 px-4 py-2 bg-red-500 text-white rounded-2xl hover:bg-red-400"} onClick={() => signInWithGoogle()}>Sign In With Google
+                <button className={"outline-0 px-4 py-2 bg-red-500 text-white rounded-2xl hover:bg-red-400"}
+                        onClick={() => signInWithGoogle()}>Sign In With Google
                 </button>
             </div>
         </div>
