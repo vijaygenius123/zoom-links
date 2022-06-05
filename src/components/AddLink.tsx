@@ -30,7 +30,7 @@ const AddLink: FC<AddLinkProps> = ({uid}) => {
                         Name
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border border-blue-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="name" type="text" placeholder="Name" required value={name}
                         onChange={e => setName(e.target.value)}/>
                 </div>
@@ -39,7 +39,7 @@ const AddLink: FC<AddLinkProps> = ({uid}) => {
                         Meeting ID
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded border-blue-500 w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                         id="id" type="text" placeholder="123 123 1234" required value={meetingId}
                         onChange={e => setMeetingID(e.target.value)}/>
                 </div>
