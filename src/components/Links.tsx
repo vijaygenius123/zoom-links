@@ -22,7 +22,7 @@ const Links:FC<LinksProps> = ({userId}) => {
         return <h2>Error ...</h2>
     }
 
-    return <div className={"bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-xl m-auto"}>
+    return <div className={"w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-2xl m-auto"}>
         <h1 className={"text-center text-2xl"}>Meeting Links</h1>
         <input className={"p-3 border-2 rounded-lg w-full m-1 border-blue-500"} placeholder={"Search"} type="text" value={search} onChange={e => setSearch(e.target.value)}/>
         <div className={"flex flex-col justify-center align-items-center "}>

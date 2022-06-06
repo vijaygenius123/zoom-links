@@ -26,10 +26,10 @@ function App() {
                 <h1 className={"text-center text-2xl text-white"}>Zoom Links</h1>
                 <h2 className={"text-center text-xl text-white "}>Welcome, {user.user.displayName}</h2>
                 {user &&
-                    <>
+                    <div className={"flex w-full m-4 flex-col xl:flex-row"}>
                         <AddLink uid={user.user.uid}/>
                         <Links userId={user.user.uid}/>
-                    </>
+                    </div>
                 }
 
             </div>
